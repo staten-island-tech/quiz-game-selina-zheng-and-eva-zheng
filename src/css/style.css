@@ -1,3 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Ranchers&display=swap');
+*, *::before, *::after{
+  box-sizing: border-box;
+  font-family: 'Ranchers', cursive;
+}
+:root{
+  --hue-neutral:200;
+  --hue-wrong:0;
+  --hue-correct:145;
+}
 body{
-  background-color: red;
+  --hue: var(--hue-neutral);
+  padding:0;
+  margin:0 auto;
+  display: flex;
+  width:100vw;
+  height:!00vh;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(var(--hue),100%,20%);
+}
+body.correct{
+  --hue: var(--hue-correct);
+}
+body.wrong{
+  --hue: var(--hue-wrong);
+}
+.overall-container{
+  width:65vw;
+  max-width:80%;
+  background-color: white;
+  border-radius:.5rem;
+  padding:1rem;
+  box-shadow: 0 0 1rem .2rem;
+}
+.btn-grid{
+  display:grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.btn{
+  
 }
