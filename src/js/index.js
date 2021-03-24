@@ -3,6 +3,13 @@ const express = require('express');
 //npm init -y
 //npm i parcel-bundler --save-dev
 //questions array, array of objects
+const questionContainerElement = document.getElementById('question-container');
+function setNextQuestion(){
+
+}
+function selectAnswer(){
+
+}
 const questions = [
   //question {} should contain the following
   //the question: "String" (remeber your comma!!!),

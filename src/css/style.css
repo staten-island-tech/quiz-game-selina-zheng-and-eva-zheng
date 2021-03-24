@@ -64,11 +64,24 @@ color:black;
   --hue: var(--hue-wrong); 
 }
 .next-btn{
+  background-color: rgb(153, 204, 255);
+  color:rgb(3, 24, 83);
   font-size:1.5rem;
-  font-weight:bold;
-  padding:.8rem 1.1rem;
+  font-weight:100;
+  padding:0.8rem 1rem;
   border-radius:1rem;
+  letter-spacing: .2rem;
 }
-.next-btn:hover{
-  
+.button:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
+.controls{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+
+}
+/* .hide{
+  display:none;
+} */
