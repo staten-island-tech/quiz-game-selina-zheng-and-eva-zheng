@@ -14,7 +14,8 @@ body{
   margin:0 auto;
   display: flex;
   width:100vw;
-  height:!00vh;
+  height:100vh;
+  flex-direction:column;
   justify-content: center;
   align-items: center;
   background-color: hsl(var(--hue),100%,20%);
@@ -24,6 +25,10 @@ body.correct{
 }
 body.wrong{
   --hue: var(--hue-wrong);
+}
+.fivegrader{
+  color:white;
+  letter-spacing: 2px;
 }
 .overall-container{
   width:65vw;
@@ -40,5 +45,30 @@ body.wrong{
   margin: 1rem 0;
 }
 .btn{
+ --hue: var(--hue-neutral); 
+ border: .2rem solid hsl(var(--hue), 100%, 30%);
+ background-color: hsl(var(--hue),100%,50%);
+ border-radius: 5px;
+ padding: .3rem .5rem;
+ color:white;
+ outline:none;
+}
+.btn:hover{
+  border-color:black;
+}
+.btn.correct{
+--hue: var(--hue-correct); 
+color:black;
+}
+.btn.wrong{
+  --hue: var(--hue-wrong); 
+}
+.next-btn{
+  font-size:1.5rem;
+  font-weight:bold;
+  padding:.8rem 1.1rem;
+  border-radius:1rem;
+}
+.next-btn:hover{
   
 }
