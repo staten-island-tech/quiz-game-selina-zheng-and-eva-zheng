@@ -41,7 +41,7 @@ function setNextQuestion(){
 };
 
 function showQuestion(question){
-  questionElement.innerText = question.question
+  questionElement.innerText = question.question;
   question.answersArr.forEach(answer => {
     const button = document.createElement('buttons')
     button.innerText = answer.content
@@ -55,6 +55,7 @@ function showQuestion(question){
 };
 
 function resetState(){
+  clearStatusClass(document.body)
   nextButton.classList.add('hide')
   //now want to loop through all the children for the answers
   while (answerButtonsElement.firstChild){
@@ -69,7 +70,13 @@ function selectAnswer(e){
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
   })
-  nextButton.classList.remove('hide')
+  if(shuffledQuestions.length > currentQuestionIndex + 1){
+    nextButton.classList.remove('hide')
+  }else{
+    startButton.innertext = 'Restart'
+    startButton.classList.remove('hide')
+  }
+  
 };
 function setStatusClass(element, correct){
   clearStatusClass(element)
