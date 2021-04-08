@@ -5,91 +5,6 @@
 //npm init -y
 //npm i parcel-bundler --save-dev
 //questions array, array of objects
-
- 
-const startButton = document.getElementById('start-btn')
-const nextButton = document.getElementById('next-btn')
-const questionContainerElement = document.getElementById('question-container');
-const questionElement = document.getElementById('question');
-const answerButtonsElement = document.getElementById('answer-buttons');
-
-
-let shuffleQuestions, currentQuestionIndex ;//^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
-
-//in the variable startButton if you click it, it would perform the action of starting the Game
-startButton.addEventListener('click', startGame)
-nextButton.addEventListener('click', () => {
-  currentQuestionIndex++
-  setNextQuestion()
-})
-
-function startGame() {
-  startButton.classList.add('hide')
-  shuffledQuestions = questions.sort(() => Math.random() - .5)
-  //shuffles all our questions for us, gives us a question between 1 and 0 (Math.random) and the .5 would gives us a number less than 0 or above zero 50% of the time
-  currentQuestionIndex = 0
-  //starting on the very first question
-  questionContainerElement.classList.remove('hide')
-  //the variable questionCOntainerElement used document search and brought in the div for question-container. Here we use JS to remove the class of hide and thus unhide the element
-  setNextQuestion()
-}
-
-function setNextQuestion(){
-  resetState()
-  //will add a function in a function
-  showQuestion(shuffledQuestions[currentQuestionIndex])
-};
-
-function showQuestion(question){
-  questionElement.innerText = question.question;
-  question.answersArr.forEach(answer => {
-    const button = document.createElement('buttons')
-    button.innerText = answer.content
-    button.classList.add('btn')
-    if (answer.correct){
-      button.dataset.correct = answer.correct
-    }
-    button.addEventListener('click', selectAnswer)
-    answerButtonsElement.appendChild(button)
-  })
-};
-
-function resetState(){
-  clearStatusClass(document.body)
-  nextButton.classList.add('hide')
-  //now want to loop through all the children for the answers
-  while (answerButtonsElement.firstChild){
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
-  }
-}
-function selectAnswer(e){
-  const selectedButton = e.target
-  //for wahtever we clicked on
-  const correct = selectedButton.dataset.correct
-  setStatusClass(document.body, correct)
-  Array.from(answerButtonsElement.children).forEach(button => {
-    setStatusClass(button, button.dataset.correct)
-  })
-  if(shuffledQuestions.length > currentQuestionIndex + 1){
-    nextButton.classList.remove('hide')
-  }else{
-    startButton.innertext = 'Restart'
-    startButton.classList.remove('hide')
-  }
-  
-};
-function setStatusClass(element, correct){
-  clearStatusClass(element)
-  if(correct){
-    element.classList.add('correct')
-  }else{
-    element.classList.add('wrong')
-  }
-}
-function clearStatusClass(element){
-  element.classList.remove('correct')
-  element.classList.remove('wrong')
-}
 const questions = [
   //question {} should contain the following
   //the question: "String" (remeber your comma!!!),
@@ -188,12 +103,89 @@ const questions = [
     ]
   },
 ];
-const score = 0;
+ 
+const startButton = document.getElementById('start-btn')
+const nextButton = document.getElementById('next-btn')
+const questionContainerElement = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-buttons');
 
-// //to get whether a question is correct or incorrect we use a "for loop"
-//  for(){
-//       let i=0,
-//    i < questions.length,//to loop for as many questions are in the array (in the variable questions)
-//    i++ ,//increment i The increment operator(i++) adds 1 to the operand and the decrement operator (i--) subtracts 1 from the operand
-//  };
+
+let shuffleQuestions, currentQuestionIndex ;//^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
+
+//in the variable startButton if you click it, it would perform the action of starting the Game
+startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+  currentQuestionIndex++
+  setNextQuestion()
+})
+
+function startGame() {
+  startButton.classList.add('hide')
+  shuffledQuestions = questions.sort(() => Math.random() - .5)
+  //shuffles all our questions for us, gives us a question between 1 and 0 (Math.random) and the .5 would gives us a number less than 0 or above zero 50% of the time
+  currentQuestionIndex = 0
+  //starting on the very first question
+  questionContainerElement.classList.remove('hide')
+  //the variable questionCOntainerElement used document search and brought in the div for question-container. Here we use JS to remove the class of hide and thus unhide the element
+  setNextQuestion()
+}
+
+function setNextQuestion(){
+  resetState()
+  //will add a function in a function
+  showQuestion(shuffledQuestions[currentQuestionIndex])
+};
+
+function showQuestion(question){
+  questionElement.innerText = question.question;
+  question.answersArr.forEach(answer => {
+    const button = document.createElement('buttons')
+    button.innerText = answer.content
+    button.classList.add('btn')
+    if (answer.correct){
+      button.dataset.correct = answer.correct
+    }
+    button.addEventListener('click', selectAnswer)
+    answerButtonsElement.appendChild(button)
+  })
+};
+
+function resetState(){
+  clearStatusClass(document.body)
+  nextButton.classList.add('hide')
+  //now want to loop through all the children for the answers
+  while (answerButtonsElement.firstChild){
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+  }
+}
+function selectAnswer(e){
+  const selectedButton = e.target
+  //for wahtever we clicked on
+  const correct = selectedButton.dataset.correct
+  setStatusClass(document.body, correct)
+  Array.from(answerButtonsElement.children).forEach(button => {
+    setStatusClass(button, button.dataset.correct)
+  })
+  if(shuffledQuestions.length > currentQuestionIndex + 1){
+    nextButton.classList.remove('hide')
+  }else{
+    startButton.innertext = 'Restart'
+    startButton.classList.remove('hide')
+  }
+  
+};
+function setStatusClass(element, correct){
+  clearStatusClass(element)
+  if(correct){
+    element.classList.add('correct')
+  }else{
+    element.classList.add('wrong')
+  }
+}
+function clearStatusClass(element){
+  element.classList.remove('correct')
+  element.classList.remove('wrong')
+}
+
 })();
