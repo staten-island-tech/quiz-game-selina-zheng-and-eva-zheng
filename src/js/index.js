@@ -7,12 +7,10 @@
 //questions array, array of objects
 
  
-const startButton = document.getElementById('start-btn');
-const nextButton = document.getElementById('next-btn');
-
+const startButton = document.getElementById('start-btn')
+const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container');
-
-const questionElement = document.getElementById('questions');
+const questionElement = document.getElementById('question');
 //variable to get the element to put in the questions
 
 const answerButtonsElement = document.getElementById('answer-buttons');
@@ -20,9 +18,20 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 
 let shuffleQuestions, currentQuestionIndex ;//^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
 
-// startButton.addEventListener('click', startGame());
 //in the variable startButton if you click it, it would perform the action of starting the Game
-document.getElementById('start-btn').addEventListener('click', startGame());
+startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+  currentQuestionIndex++
+  setNextQuestion()
+})
+
+function startGame() {
+  startButton.classList.add('hide')
+  shuffledQuestions = questions.sort(() => Math.random() - .5)
+  currentQuestionIndex = 0
+  questionContainerElement.classList.remove('hide')
+  setNextQuestion()
+}
 
 function startGame(){
   console.log('Started');
@@ -146,12 +155,10 @@ const questions = [
 ];
 const score = 0;
 
-//to get whether a question is correct or incorrect we use a "for loop"
- for(
-   const i=0;
-   i < questions.length;//to loop for as many questions are in the array (in the variable questions)
-   i++ //increment i The increment operator(i++) adds 1 to the operand and the decrement operator (i--) subtracts 1 from the operand
- ){
-
- };
+// //to get whether a question is correct or incorrect we use a "for loop"
+//  for(){
+//       let i=0,
+//    i < questions.length,//to loop for as many questions are in the array (in the variable questions)
+//    i++ ,//increment i The increment operator(i++) adds 1 to the operand and the decrement operator (i--) subtracts 1 from the operand
+//  };
 })();
