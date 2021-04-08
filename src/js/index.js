@@ -11,10 +11,8 @@ const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
-//variable to get the element to put in the questions
-
 const answerButtonsElement = document.getElementById('answer-buttons');
-//variable to put in a text for the answer buttons
+
 
 let shuffleQuestions, currentQuestionIndex ;//^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
 
@@ -28,33 +26,63 @@ nextButton.addEventListener('click', () => {
 function startGame() {
   startButton.classList.add('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
+  //shuffles all our questions for us, gives us a question between 1 and 0 (Math.random) and the .5 would gives us a number less than 0 or above zero 50% of the time
   currentQuestionIndex = 0
+  //starting on the very first question
   questionContainerElement.classList.remove('hide')
+  //the variable questionCOntainerElement used document search and brought in the div for question-container. Here we use JS to remove the class of hide and thus unhide the element
   setNextQuestion()
 }
 
-function startGame(){
-  console.log('Started');
-  startButton.classList.add('hide')
-  shuffledQuestions = questions.sort(() => Math.random() - .5); //shuffles all our questions for us, gives us a question between 1 and 0 (Math.random) and the .5 would gives us a number less than 0 or above zero 50% of the time
-  currentQuestionIndex = 0; //starting on the very first question
-  questionContainerElement.classList.remove('hide');
-  //the variable questionCOntainerElement used document search and brought in the div for question-container. Here we use JS to remove the class of hide and thus unhide the element
-  setNextQuestion();
-};
-
 function setNextQuestion(){
+  resetState()
   //will add a function in a function
   showQuestion(shuffledQuestions[currentQuestionIndex])
 };
 
 function showQuestion(question){
-  questionElement.innerText = question.question;
+  questionElement.innerText = question.question
+  question.answersArr.forEach(answer => {
+    const button = document.createElement('buttons')
+    button.innerText = answer.content
+    button.classList.add('btn')
+    if (answer.correct){
+      button.dataset.correct = answer.correct
+    }
+    button.addEventListener('click', selectAnswer)
+    answerButtonsElement.appendChild(button)
+  })
 };
 
-function selectAnswer(){
-
+function resetState(){
+  nextButton.classList.add('hide')
+  //now want to loop through all the children for the answers
+  while (answerButtonsElement.firstChild){
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+  }
+}
+function selectAnswer(e){
+  const selectedButton = e.target
+  //for wahtever we clicked on
+  const correct = selectedButton.dataset.correct
+  setStatusClass(document.body, correct)
+  Array.from(answerButtonsElement.children).forEach(button => {
+    setStatusClass(button, button.dataset.correct)
+  })
+  nextButton.classList.remove('hide')
 };
+function setStatusClass(element, correct){
+  clearStatusClass(element)
+  if(correct){
+    element.classList.add('correct')
+  }else{
+    element.classList.add('wrong')
+  }
+}
+function clearStatusClass(element){
+  element.classList.remove('correct')
+  element.classList.remove('wrong')
+}
 const questions = [
   //question {} should contain the following
   //the question: "String" (remeber your comma!!!),
