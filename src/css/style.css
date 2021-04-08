@@ -63,7 +63,7 @@ color:black;
 .btn.wrong{
   --hue: var(--hue-wrong); 
 }
-.next-btn{
+.start-btn, .next-btn{
   background-color: rgb(153, 204, 255);
   color:rgb(3, 24, 83);
   font-size:1.5rem;
@@ -72,16 +72,18 @@ color:black;
   border-radius:1rem;
   letter-spacing: .2rem;
 }
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .button:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-.controls{
-  display: flex;
-  justify-content: center;
-  align-items:center;
 
-}
-/* .hide{
+ .hide{
   display:none;
-} */
+} 

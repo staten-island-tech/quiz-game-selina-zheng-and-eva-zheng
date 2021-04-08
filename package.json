@@ -1,24 +1,28 @@
 {
-  "name": "Quiz Game",
+  "name": "quiz-game-selina-zheng-and-eva-zheng",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+
+  },
   "scripts": {
-    "start": "parcel src/index.html",
-    "build-prod": "parcel build src/index.html"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean":"rm dist/bundle.js",
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SelinaZheng/Install.git"
+    "url": "git+https://github.com/staten-island-tech/quiz-game-selina-zheng-and-eva-zheng.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SelinaZheng/Install/issues"
+    "url": "https://github.com/staten-island-tech/quiz-game-selina-zheng-and-eva-zheng/issues"
   },
-  "homepage": "https://github.com/SelinaZheng/Install#readme",
-  "devDependencies": {
-    "parcel-bundler": "^1.12.5"
-  }
+  "homepage": "https://github.com/staten-island-tech/quiz-game-selina-zheng-and-eva-zheng#readme"
 }
