@@ -1,5 +1,7 @@
 
+import { DOMSelectors } from "./score.js";
 (function(){
+
   //const express = require('express');
 //npm install -g parcel-bundler
 //npm init -y
@@ -104,34 +106,35 @@ const questions = [
   },
 ];
  
-const startButton = document.getElementById('start-btn')
-const nextButton = document.getElementById('next-btn')
-const submitButton = document.getElementById('submit-btn')
-const questionContainerElement = document.getElementById('question-container');
-const questionElement = document.getElementById('question');
-const answerButtonsElement = document.getElementById('answer-buttons');
-const scoreboard = document.getElementById('scoreboard');
+// const startButton = document.getElementById('start-btn')
+// const nextButton = document.getElementById('next-btn')
+// const submitButton = document.getElementById('submit-btn')
+// const restartButton= document.getElementById('restart-btn')
+// const questionContainerElement = document.getElementById('question-container');
+// const questionElement = document.getElementById('question');
+// const answerButtonsElement = document.getElementById('answer-buttons');
 
 
 let shuffledQuestions, currentQuestionIndex //^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
 
 //in the variable startButton if you click it, it would perform the action of starting the Game
-startButton.addEventListener('click', startGame)
-nextButton.addEventListener('click', () => {
+DOMSelectors.startButton.addEventListener('click', startGame)
+DOMSelectors.restartButton.addEventListener('click', restartGame)
+DOMSelectors.nextButton.addEventListener('click', () => {
   currentQuestionIndex++
   setNextQuestion()
 })
-submitButton.addEventListener('click', showResults)
+DOMSelectors.submitButton.addEventListener('click', showResults)
 
 function startGame() {
-  startButton.classList.add('hide')
-  scoreboard.classList.add('hide')
-  questionContainerElement.classList.remove('hide')
+  DOMSelectors.startButton.classList.add('hide')
+
+  DOMSelectors.questionContainerElement.classList.remove('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   //shuffles all our questions for us, gives us a question between 1 and 0 (Math.random) and the .5 would gives us a number less than 0 or above zero 50% of the time
   currentQuestionIndex = 0
   //starting on the very first question
-  questionContainerElement.classList.remove('hide')
+  DOMSelectors.questionContainerElement.classList.remove('hide')
   //the variable questionCOntainerElement used document search and brought in the div for question-container. Here we use JS to remove the class of hide and thus unhide the element
   setNextQuestion()
 }
@@ -142,7 +145,7 @@ function setNextQuestion() {
 }
 
 function showQuestion(question){
-  questionElement.innerText = question.question;
+  DOMSelectors.questionElement.innerText = question.question;
   question.answersArr.forEach(answer => {
     const button = document.createElement('buttons')
     button.innerText = answer.content
@@ -151,16 +154,16 @@ function showQuestion(question){
       button.dataset.correct = answer.correct
     }
     button.addEventListener('click', selectAnswer)
-    answerButtonsElement.appendChild(button)
+    DOMSelectors.answerButtonsElement.appendChild(button)
   })
 };
 
 function resetState(){
   clearStatusClass(document.body)
-  nextButton.classList.add('hide')
+  DOMSelectors.nextButton.classList.add('hide')
   //now want to loop through all the children for the answers
-  while (answerButtonsElement.firstChild){
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+  while (DOMSelectors.answerButtonsElement.firstChild){
+    DOMSelectors.answerButtonsElement.removeChild(DOMSelectors.answerButtonsElement.firstChild)
   }
 }
 function selectAnswer(e){
@@ -191,18 +194,18 @@ function clearStatusClass(element){
   element.classList.remove('correct')
   element.classList.remove('wrong')
 }
-let score = 0
-score = 0
+score = -10
 function showResults() {
-  scoreboard.innerHTML = "<h2>You've completed the quiz!</h2>" +
+  DOMSelectors.questionContainerElement.innerHTML = "<h2>You've completed the quiz!</h2>" +
     "<h2>Below are your results:</h2>" +
     "<h2>" + score + " out of " + shuffledQuestions.length + " questions, " +
     Math.round(score / shuffledQuestions.length * 100) + "%<h2>";
-    startButton.innerText = 'Restart'
-    startButton.classList.remove('hide')
-    submitButton.classList.add('hide')
-    scoreboard.classList.remove('hide')
-    questionContainerElement.classList.add('hide')
+    DOMSelectors.restartButton.innerText = 'Restart'
+    DOMSelectors.restartButton.classList.remove('hide')
+    DOMSelectors.submitButton.classList.add('hide')
 }
-
+function restartGame(){
+  window.parent.location = window.parent.location.href;
+  DOMSelectors.restartButton.classList.add('hide')
+}
 })();
