@@ -107,16 +107,17 @@ const questions = [
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const submitButton = document.getElementById('submit-btn')
+const restartButton= document.getElementById('restart-btn')
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
-const scoreboard = document.getElementById('scoreboard');
 
 
 let shuffledQuestions, currentQuestionIndex //^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
 
 //in the variable startButton if you click it, it would perform the action of starting the Game
 startButton.addEventListener('click', startGame)
+restartButton.addEventListener('click', restartGame)
 nextButton.addEventListener('click', () => {
   currentQuestionIndex++
   setNextQuestion()
@@ -197,8 +198,12 @@ function showResults() {
     "<h2>Below are your results:</h2>" +
     "<h2>" + score + " out of " + shuffledQuestions.length + " questions, " +
     Math.round(score / shuffledQuestions.length * 100) + "%<h2>";
-    startButton.innerText = 'Restart'
-    startButton.classList.remove('hide')
+    restartButton.innerText = 'Restart'
+    restartButton.classList.remove('hide')
     submitButton.classList.add('hide')
+}
+function restartGame(){
+  window.parent.location = window.parent.location.href;
+  restartButton.classList.add('hide')
 }
 })();

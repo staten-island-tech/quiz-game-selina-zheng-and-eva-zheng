@@ -63,7 +63,7 @@ color:black;
 .btn.wrong{
   --hue: var(--hue-wrong); 
 }
-.start-btn, .next-btn, .submit-btn{
+.start-btn, .next-btn, .submit-btn, .restart-btn{
   background-color: rgb(153, 204, 255);
   color:rgb(3, 24, 83);
   font-size:1.5rem;
