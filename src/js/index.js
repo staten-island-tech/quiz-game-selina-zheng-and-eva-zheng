@@ -110,7 +110,7 @@ const submitButton = document.getElementById('submit-btn')
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
-const scoreboard = document.getElementById('scoreboard');
+const scoreBoard = document.getElementById('scoreboard');
 
 
 let shuffledQuestions, currentQuestionIndex //^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
@@ -125,7 +125,6 @@ submitButton.addEventListener('click', showResults)
 
 function startGame() {
   startButton.classList.add('hide')
-  scoreboard.classList.add('hide')
   questionContainerElement.classList.remove('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   //shuffles all our questions for us, gives us a question between 1 and 0 (Math.random) and the .5 would gives us a number less than 0 or above zero 50% of the time
@@ -193,14 +192,14 @@ function clearStatusClass(element){
 }
 score = -10
 function showResults() {
-  scoreboard.innerHTML = "<h2>You've completed the quiz!</h2>" +
+  scoreBoard.innerHTML = "<h2>You've completed the quiz!</h2>" +
     "<h2>Below are your results:</h2>" +
     "<h2>" + score + " out of " + shuffledQuestions.length + " questions, " +
-    Math.round(score / shuffledQuestions.length * 100) + "%<h2>";
+    Math.round(score / shuffledQuestions.length * 100) + "%<h2>"
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
     submitButton.classList.add('hide')
-    scoreboard.classList.remove('hide')
+    scoreBoard.classList.remove('hide')
     questionContainerElement.classList.add('hide')
 }
 

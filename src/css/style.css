@@ -37,6 +37,10 @@ body.wrong{
   border-radius:.5rem;
   padding:1rem;
   box-shadow: 0 0 1rem .2rem;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  display:flex;
 }
 .btn-grid{
   display:grid;
