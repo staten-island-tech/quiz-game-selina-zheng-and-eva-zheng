@@ -113,7 +113,6 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const scoreboard = document.getElementById('scoreboard');
 
 
-
 let shuffledQuestions, currentQuestionIndex //^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
 
 //in the variable startButton if you click it, it would perform the action of starting the Game
@@ -126,6 +125,7 @@ submitButton.addEventListener('click', showResults)
 
 function startGame() {
   startButton.classList.add('hide')
+
   questionContainerElement.classList.remove('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   //shuffles all our questions for us, gives us a question between 1 and 0 (Math.random) and the .5 would gives us a number less than 0 or above zero 50% of the time
