@@ -191,8 +191,7 @@ function clearStatusClass(element){
   element.classList.remove('correct')
   element.classList.remove('wrong')
 }
-let score = 0
-score = 0
+score = -10
 function showResults() {
   scoreboard.innerHTML = "<h2>You've completed the quiz!</h2>" +
     "<h2>Below are your results:</h2>" +
