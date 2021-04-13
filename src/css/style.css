@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Ranchers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orelega+One&display=swap');
+
 *, *::before, *::after{
   box-sizing: border-box;
-  font-family: 'Ranchers', cursive;
 }
 :root{
   --hue-neutral:200;
@@ -29,8 +31,25 @@ body.wrong{
 .fivegrader{
   color:white;
   letter-spacing: 2px;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin:0 auto;
+  flex-direction: column;
 }
-.overall-container, #scoreboard{
+.fivegrader h1{
+  font-family: 'Ranchers', cursive;
+  font-size:2rem;
+  margin-bottom:0;
+}
+.edition{
+  font-family: 'Lato', sans-serif;
+  font-style:italic;
+  font-size:1.5rem;
+  margin-top:.7rem;
+}
+.overall-container{
+  font-family: 'Orelega One', cursive;
   width:65vw;
   max-width:80%;
   background-color: white;
@@ -52,6 +71,7 @@ body.wrong{
  padding: .3rem .5rem;
  color:white;
  outline:none;
+ font-family: 'Orelega One', cursive;
 }
 .btn:hover{
   border-color:black;
@@ -63,6 +83,13 @@ color:black;
 .btn.wrong{
   --hue: var(--hue-wrong); 
 }
+.question-container .question{
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
 .start-btn, .next-btn, .submit-btn, .restart-btn{
   background-color: rgb(153, 204, 255);
   color:rgb(3, 24, 83);
@@ -71,6 +98,9 @@ color:black;
   padding:0.8rem 1rem;
   border-radius:1rem;
   letter-spacing: .2rem;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
 }
 
 .controls {
