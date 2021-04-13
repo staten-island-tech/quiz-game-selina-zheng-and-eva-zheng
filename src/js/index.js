@@ -106,14 +106,12 @@ const questions = [
  
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
-const submitButton = document.getElementById('submit-btn')
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
-const scoreBoard = document.getElementById('scoreboard');
 
 
-let shuffledQuestions, currentQuestionIndex //^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
+let shuffleQuestions, currentQuestionIndex ;//^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
 
 //in the variable startButton if you click it, it would perform the action of starting the Game
 startButton.addEventListener('click', startGame)
@@ -121,11 +119,9 @@ nextButton.addEventListener('click', () => {
   currentQuestionIndex++
   setNextQuestion()
 })
-submitButton.addEventListener('click', showResults)
 
 function startGame() {
   startButton.classList.add('hide')
-  questionContainerElement.classList.remove('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   //shuffles all our questions for us, gives us a question between 1 and 0 (Math.random) and the .5 would gives us a number less than 0 or above zero 50% of the time
   currentQuestionIndex = 0
@@ -135,10 +131,11 @@ function startGame() {
   setNextQuestion()
 }
 
-function setNextQuestion() {
+function setNextQuestion(){
   resetState()
+  //will add a function in a function
   showQuestion(shuffledQuestions[currentQuestionIndex])
-}
+};
 
 function showQuestion(question){
   questionElement.innerText = question.question;
@@ -173,7 +170,8 @@ function selectAnswer(e){
   if(shuffledQuestions.length > currentQuestionIndex + 1){
     nextButton.classList.remove('hide')
   }else{
-    submitButton.classList.remove('hide')
+    startButton.innertext = 'Restart'
+    startButton.classList.remove('hide')
   }
   
 };
@@ -181,7 +179,6 @@ function setStatusClass(element, correct){
   clearStatusClass(element)
   if(correct){
     element.classList.add('correct')
-    score++
   }else{
     element.classList.add('wrong')
   }
@@ -189,18 +186,6 @@ function setStatusClass(element, correct){
 function clearStatusClass(element){
   element.classList.remove('correct')
   element.classList.remove('wrong')
-}
-score = -10
-function showResults() {
-  scoreBoard.innerHTML = "<h2>You've completed the quiz!</h2>" +
-    "<h2>Below are your results:</h2>" +
-    "<h2>" + score + " out of " + shuffledQuestions.length + " questions, " +
-    Math.round(score / shuffledQuestions.length * 100) + "%<h2>"
-    startButton.innerText = 'Restart'
-    startButton.classList.remove('hide')
-    submitButton.classList.add('hide')
-    scoreBoard.classList.remove('hide')
-    questionContainerElement.classList.add('hide')
 }
 
 })();
