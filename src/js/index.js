@@ -103,6 +103,9 @@ const questions = [
     ]
   },
 ];
+  
+  // arrays can hold values of diff types 
+  // size of them are auto-growing 
  
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
@@ -111,6 +114,10 @@ const restartButton= document.getElementById('restart-btn')
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
+  
+ // const = variable whose value can't be changed 
+ // document.getElementById returns an Element object representing the element whose id prop matches the specified string
+ // useful way to access a specific element quickly
 
 
 let shuffledQuestions, currentQuestionIndex //^will default the values to undefine which is good for now. the let is used instead of const cause it will be redefined which const wouldn't allow
@@ -160,13 +167,14 @@ function resetState(){
   clearStatusClass(document.body)
   nextButton.classList.add('hide')
   //now want to loop through all the children for the answers
+  // while loop loops through a block of code as long as a specified condition is true
   while (answerButtonsElement.firstChild){
     answerButtonsElement.removeChild(answerButtonsElement.firstChild)
   }
 }
 function selectAnswer(e){
   const selectedButton = e.target
-  //for wahtever we clicked on
+  //for whatever we clicked on
   const correct = selectedButton.dataset.correct
   setStatusClass(document.body, correct)
   Array.from(answerButtonsElement.children).forEach(button => {
@@ -177,7 +185,8 @@ function selectAnswer(e){
   }else{
     submitButton.classList.remove('hide')
   }
-  
+// if to specify the code to be executed if a specified condition is true 
+ // else to specific the code to be exexcuted if the same condition is false
 };
 function setStatusClass(element, correct){
   clearStatusClass(element)
@@ -201,9 +210,13 @@ function showResults() {
     restartButton.innerText = 'Restart'
     restartButton.classList.remove('hide')
     submitButton.classList.add('hide')
+  
+  // math.round() returns the value of a % rounded to a nearest integer
 }
 function restartGame(){
   window.parent.location = window.parent.location.href;
   restartButton.classList.add('hide')
 }
 })();
+
+// parent of a window = current window at the time the new window is created
